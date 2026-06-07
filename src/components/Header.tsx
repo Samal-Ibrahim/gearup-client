@@ -9,18 +9,15 @@ const navItemClasses = ({ isActive }: { isActive: boolean }) =>
       : "text-slate-700 hover:bg-white/90 hover:text-slate-900",
   ].join(" ")
 
-  
-
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-slate-100/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-slate-200/60 border-b bg-slate-100/80 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-
-        <NavLink to="/" className="text-xl font-black uppercase tracking-[0.18em] text-slate-900">
+        <NavLink to="/" className="font-black text-slate-900 text-xl uppercase tracking-[0.18em]">
           GearUp
         </NavLink>
 
-        <nav className="hidden sm:flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 p-1 shadow-sm">
+        <nav className="hidden items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 p-1 shadow-sm sm:flex">
           <NavLink to="/" className={navItemClasses}>
             Home
           </NavLink>

@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "biome lint .",
+    "lint": "biome lint --write --unsafe .",
+    "lint:fix": "biome lint --write --unsafe .",
     "check": "biome check .",
-    "format": "biome format --write .",
+    "format": "biome format --write . && biome lint --write --unsafe .",
     "preview": "vite preview"
   },
   "dependencies": {

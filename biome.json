@@ -32,6 +32,9 @@
       },
       "style": {
         "useConst": "error"
+      },
+      "nursery": {
+        "useSortedClasses": "error"
       }
     }
   },

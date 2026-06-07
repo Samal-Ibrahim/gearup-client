@@ -22,8 +22,8 @@ const Login = () => {
   return (
     <section className="container-page py-12">
       <div className="card mx-auto w-full max-w-md p-6 sm:p-8">
-        <h1 className="text-2xl font-bold text-slate-900">Welcome Back</h1>
-        <p className="mt-2 text-sm text-slate-600">Sign in to continue to GearUp.</p>
+        <h1 className="font-bold text-2xl text-slate-900">Welcome Back</h1>
+        <p className="mt-2 text-slate-600 text-sm">Sign in to continue to GearUp.</p>
 
         <form
           className="mt-6 space-y-4"
@@ -33,7 +33,7 @@ const Login = () => {
           }}
         >
           <div>
-            <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="mb-1 block font-medium text-slate-700 text-sm">
               Email
             </label>
             <input
@@ -50,7 +50,7 @@ const Login = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700">
+            <label htmlFor="password" className="mb-1 block font-medium text-slate-700 text-sm">
               Password
             </label>
             <input
@@ -67,7 +67,7 @@ const Login = () => {
           </div>
 
           {isError && (
-            <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+            <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-red-700 text-sm">
               {error instanceof Error ? error.message : "Login failed. Please try again."}
             </p>
           )}
@@ -75,13 +75,13 @@ const Login = () => {
           <button
             type="submit"
             disabled={isPending}
-            className="btn-primary w-full px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-70"
+            className="btn-primary w-full px-4 py-2.5 font-semibold text-sm disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isPending ? "Signing in..." : "Sign in"}
           </button>
         </form>
 
-        <p className="mt-5 text-center text-sm text-slate-600">
+        <p className="mt-5 text-center text-slate-600 text-sm">
           Don&apos;t have an account?{" "}
           <Link to="/register" className="font-semibold text-cyan-700 hover:text-cyan-600">
             Register

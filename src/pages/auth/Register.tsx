@@ -27,8 +27,8 @@ const Register = () => {
   return (
     <section className="container-page py-12">
       <div className="card mx-auto w-full max-w-md p-6 sm:p-8">
-        <h1 className="text-2xl font-bold text-slate-900">Create Account</h1>
-        <p className="mt-2 text-sm text-slate-600">Join GearUp in a few quick steps.</p>
+        <h1 className="font-bold text-2xl text-slate-900">Create Account</h1>
+        <p className="mt-2 text-slate-600 text-sm">Join GearUp in a few quick steps.</p>
 
         <form
           className="mt-6 space-y-4"
@@ -45,7 +45,7 @@ const Register = () => {
           }}
         >
           <div>
-            <label htmlFor="name" className="mb-1 block text-sm font-medium text-slate-700">
+            <label htmlFor="name" className="mb-1 block font-medium text-slate-700 text-sm">
               Full name
             </label>
             <input
@@ -62,7 +62,7 @@ const Register = () => {
           </div>
 
           <div>
-            <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="mb-1 block font-medium text-slate-700 text-sm">
               Email
             </label>
             <input
@@ -79,7 +79,7 @@ const Register = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700">
+            <label htmlFor="password" className="mb-1 block font-medium text-slate-700 text-sm">
               Password
             </label>
             <input
@@ -98,7 +98,7 @@ const Register = () => {
           <div>
             <label
               htmlFor="confirm-password"
-              className="mb-1 block text-sm font-medium text-slate-700"
+              className="mb-1 block font-medium text-slate-700 text-sm"
             >
               Confirm password
             </label>
@@ -116,19 +116,19 @@ const Register = () => {
           </div>
 
           {passwordError && (
-            <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+            <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-red-700 text-sm">
               {passwordError}
             </p>
           )}
 
           {isError && (
-            <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+            <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-red-700 text-sm">
               {error instanceof Error ? error.message : "Registration failed. Please try again."}
             </p>
           )}
 
           {isSuccess && (
-            <p className="rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
+            <p className="rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-green-700 text-sm">
               Account created successfully. You can now sign in.
             </p>
           )}
@@ -136,13 +136,13 @@ const Register = () => {
           <button
             type="submit"
             disabled={isPending}
-            className="btn-primary w-full px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-70"
+            className="btn-primary w-full px-4 py-2.5 font-semibold text-sm disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isPending ? "Creating account..." : "Create account"}
           </button>
         </form>
 
-        <p className="mt-5 text-center text-sm text-slate-600">
+        <p className="mt-5 text-center text-slate-600 text-sm">
           Already have an account?{" "}
           <Link to="/login" className="font-semibold text-brand-700 hover:text-brand-600">
             Sign in
