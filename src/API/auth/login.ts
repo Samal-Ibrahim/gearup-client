@@ -1,5 +1,6 @@
+import { LOGIN_API } from "../../config/constants"
 export const login = async (email: string, password: string) => {
-  const res = await fetch("https://gearup-production-0f61.up.railway.app/auth/login", {
+  const res = await fetch(LOGIN_API, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

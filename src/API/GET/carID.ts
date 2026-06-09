@@ -1,4 +1,4 @@
-import { GET_CARS_API } from "../../config/constants"
+import { GET_CAR_W_ID_API } from "../../config/constants"
 export type Car = {
   id: string
   make: string
@@ -16,14 +16,16 @@ export type Car = {
 
 type ApiResponse<T> = { success: boolean; data: T }
 
-const cars = async () => {
-  const res = await fetch(GET_CARS_API, {
+const carID = async (ID: string) => {
+  console.log(ID)
+  const res = await fetch(`${GET_CAR_W_ID_API}/${ID}`, {
     method: "GET",
   })
   if (!res.ok) {
-    throw new Error("failed to fetch cars")
+    throw new Error("failed to fetch carID")
   }
   const json: ApiResponse<Car[]> = await res.json()
+  console.log(json.data)
   return json.data
 }
-export default cars
+export default carID
