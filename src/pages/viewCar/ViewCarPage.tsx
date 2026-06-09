@@ -1,8 +1,15 @@
+import { useParams } from "react-router-dom"
 import carID from "../../API/GET/carID"
 
 const ViewCarPage = () => {
-  console.log(carID("bf4602b8-1689-4f50-a083-4e790a503886"))
-  return <div>ViewCarPage</div>
+  const { id } = useParams()
+
+  if(!id || id === undefined){
+    return <div>Missing id</div>
+  }
+  
+  console.log(carID(id))
+  return <div>{id}</div>
 }
 
 export default ViewCarPage
