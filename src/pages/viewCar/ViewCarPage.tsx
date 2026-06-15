@@ -1,14 +1,17 @@
+import { skipToken, useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 import carID from "../../API/GET/carID"
 
 const ViewCarPage = () => {
   const { id } = useParams()
 
-  if(!id || id === undefined){
-    return <div>Missing id</div>
-  }
-  
-  console.log(carID(id))
+  const { data } = useQuery({
+    queryKey: ["car", id],
+    queryFn: id ? () => carID(id) : skipToken,
+  })
+
+  console.log(data)
+
   return <div>{id}</div>
 }
 

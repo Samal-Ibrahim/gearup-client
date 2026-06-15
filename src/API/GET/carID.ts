@@ -25,7 +25,6 @@ const carID = async (ID: string) => {
     throw new Error("failed to fetch carID")
   }
   const json: ApiResponse<Car[]> = await res.json()
-  console.log(json.data)
   return json.data
 }
 export default carID
