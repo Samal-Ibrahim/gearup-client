@@ -54,11 +54,11 @@ const Home = () => {
       </section>
       <section className="container mx-auto space-y-8">
         <h1 className="text-center font-black text-4xl">Our cars</h1>
-        <div className="grid auto-rows-[minmax(300px,auto)] grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-5">
+        <div className="grid auto-rows-[minmax(300px,auto)] grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5">
           {data.map((car) => (
             <Link key={car.id} to={`/car/${car.id}`}>
               {
-                <article className="group cursor-pointer overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <article className="group flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
                   <div className="relative">
                     <img
                       src={car.imageUrl ?? "https://placehold.co/800x500?text=No+Image"}
@@ -77,7 +77,7 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-4 p-5">
+                  <div className="min-h-40 space-y-4 p-5">
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <h2 className="font-extrabold text-gray-900 text-xl transition group-hover:text-brand-700">
