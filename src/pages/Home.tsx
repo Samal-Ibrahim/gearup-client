@@ -69,7 +69,7 @@ const Home = () => {
                     <div className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/45 to-transparent" />
                     <div className="absolute bottom-3 left-3 flex gap-2">
                       <span className="rounded-full bg-white/90 px-2.5 py-1 font-semibold text-gray-800 text-xs uppercase">
-                        {car.type}
+                        {car.deal}
                       </span>
                       <span className="rounded-full bg-white/90 px-2.5 py-1 font-semibold text-gray-800 text-xs uppercase">
                         {car.status}

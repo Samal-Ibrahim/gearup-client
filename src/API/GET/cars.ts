@@ -9,21 +9,23 @@ export type Car = {
   description: string
   imageUrl: string | undefined
   status: "AVAILABLE" | "SOLD" | "LEASED"
-  type: "BUY" | "LEASE"
+  deal: "BUY" | "LEASE" | "BOTH"
+  type: "GASOLINE" | "ELECTRIC" | "HYBRID" | "DIESEL"
   createdAt: string
   updatedAt: string
 }
 
 type ApiResponse<T> = { success: boolean; data: T }
 
-const cars = async () => {
-  const res = await fetch(GET_CARS_API, {
+const cars = async (type: string, deal: string) => {
+  const res = await fetch(`${GET_CARS_API}?type=${type}&deal=${deal}`, {
     method: "GET",
   })
   if (!res.ok) {
     throw new Error("failed to fetch cars")
   }
   const json: ApiResponse<Car[]> = await res.json()
+  console.log(json.data)
   return json.data
 }
 export default cars
