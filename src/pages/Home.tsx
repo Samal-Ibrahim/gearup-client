@@ -77,7 +77,7 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div className="min-h-40 space-y-4 p-5">
+                  <div className="max-h-60 min-h-60 space-y-4 p-5">
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <h2 className="font-extrabold text-gray-900 text-xl transition group-hover:text-brand-700">
