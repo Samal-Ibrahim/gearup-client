@@ -16,7 +16,7 @@ const formatMileage = (mileage: number) => new Intl.NumberFormat("en-US").format
 const Home = () => {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["cars"],
-    queryFn: () => cars(),
+    queryFn: () => cars("", "LEASE"),
   })
 
   if (isPending) return <p>Loading…</p>

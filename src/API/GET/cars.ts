@@ -17,10 +17,14 @@ export type Car = {
 
 type ApiResponse<T> = { success: boolean; data: T }
 
-const cars = async (type: string, deal: string) => {
-  const res = await fetch(`${GET_CARS_API}?type=${type}&deal=${deal}`, {
-    method: "GET",
-  })
+const cars = async (type?: string, deal?: string) => {
+  const params = new URLSearchParams()
+  if (type) params.set("type", type)
+  if (deal) params.set("deal", deal)
+  const qs = params.toString()
+  const url = qs ? `${GET_CARS_API}?${qs}` : GET_CARS_API
+
+  const res = await fetch(url, { method: "GET" })
   if (!res.ok) {
     throw new Error("failed to fetch cars")
   }

@@ -17,7 +17,6 @@ export type Car = {
 type ApiResponse<T> = { success: boolean; data: T }
 
 const carID = async (ID: string) => {
-  console.log(ID)
   const res = await fetch(`${GET_CAR_W_ID_API}/${ID}`, {
     method: "GET",
   })
