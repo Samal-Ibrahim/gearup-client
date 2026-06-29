@@ -15,17 +15,9 @@ const formatPrice = (price: number) =>
 const formatMileage = (mileage: number) => new Intl.NumberFormat("en-US").format(mileage)
 
 const Home = () => {
-  const [filters, setFilters] = useState({ type: "", deal: "" })
-
-  const {
-    data = [],
-    isLoading,
-    isFetching,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["cars", filters.type, filters.deal],
-    queryFn: () => cars(filters.type, filters.deal),
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["cars"],
+    queryFn: () => cars("", "LEASE"),
   })
 
   if (isError) return <p>Error: {error.message}</p>
