@@ -24,6 +24,7 @@ const cars = async (type?: string, deal?: string) => {
   const qs = params.toString()
   const url = qs ? `${GET_CARS_API}?${qs}` : GET_CARS_API
 
+  console.log("params:", deal, type)
   const res = await fetch(url, { method: "GET" })
   if (!res.ok) {
     throw new Error("failed to fetch cars")

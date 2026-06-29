@@ -3,7 +3,7 @@ import { useMemo, useState } from "react"
 type FiltersState = {
   query: string
   type: string
-  drivetrain: string
+  deal: string
   minPrice: string
   maxPrice: string
   minYear: string
@@ -15,7 +15,7 @@ type FiltersState = {
 const initialFilters: FiltersState = {
   query: "",
   type: "",
-  drivetrain: "",
+  deal: "",
   minPrice: "",
   maxPrice: "",
   minYear: "",
@@ -24,12 +24,15 @@ const initialFilters: FiltersState = {
   sortBy: "monthly_asc",
 }
 
+type FilteringProps = {
+  onApply?: (filters: FiltersState) => void
+}
+
 const inputClassName =
   "w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-0 transition focus:border-brand-200 focus:bg-[#ecfafc]"
 
-const Filtering = () => {
+const Filtering = ({ onApply }: FilteringProps) => {
   const [filters, setFilters] = useState<FiltersState>(initialFilters)
-
   const activeFilters = useMemo(
     () =>
       Object.entries(filters).filter(
@@ -40,18 +43,28 @@ const Filtering = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target
-    setFilters((prev) => ({ ...prev, [name]: value }))
+    setFilters((prev) => {
+      const nextFilters = { ...prev, [name]: value }
+
+      if (name === "type" || name === "deal") {
+        onApply?.(nextFilters)
+      }
+
+      return nextFilters
+    })
   }
 
   const resetFilters = () => {
     setFilters(initialFilters)
+    onApply?.(initialFilters)
   }
 
   return (
     <form
       className="flex w-full flex-col gap-4"
-      onSubmit={(event) => {
-        event.preventDefault()
+      onSubmit={(e) => {
+        e.preventDefault()
+        onApply?.(filters)
       }}
     >
       <div className="flex flex-row rounded-2xl border-gray-200 shadow">
@@ -74,6 +87,24 @@ const Filtering = () => {
       <div className="rounded-2xl border-gray-200 bg-white p-4 shadow">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-1">
+            <label htmlFor="deal" className="font-medium text-gray-700 text-sm">
+              Deal
+            </label>
+            <select
+              name="deal"
+              id="deal"
+              value={filters.deal}
+              onChange={handleChange}
+              className={inputClassName}
+            >
+              <option value="">All</option>
+              <option value="LEASE">Lease</option>
+              <option value="BUY">Buy</option>
+              <option value="BOTH">Both</option>
+            </select>
+          </div>
+
+          <div className="space-y-1">
             <label htmlFor="type" className="font-medium text-gray-700 text-sm">
               Type
             </label>
@@ -85,27 +116,10 @@ const Filtering = () => {
               className={inputClassName}
             >
               <option value="">All</option>
-              <option value="comfy">Comfy</option>
-              <option value="sport">Sport</option>
-              <option value="super_sport">Super Sport</option>
-            </select>
-          </div>
-
-          <div className="space-y-1">
-            <label htmlFor="drivetrain" className="font-medium text-gray-700 text-sm">
-              Drivetrain
-            </label>
-            <select
-              name="drivetrain"
-              id="drivetrain"
-              value={filters.drivetrain}
-              onChange={handleChange}
-              className={inputClassName}
-            >
-              <option value="">All</option>
-              <option value="electric">Electric</option>
-              <option value="gasoline">Gasoline</option>
-              <option value="hybrid">Hybrid</option>
+              <option value="ELECTRIC">Electric</option>
+              <option value="GASOLINE">Gasoline</option>
+              <option value="HYBRID">Hybrid</option>
+              <option value="DIESEL">Diesel</option>
             </select>
           </div>
 
@@ -214,11 +228,10 @@ const Filtering = () => {
             Active filters:{" "}
             <span className="font-semibold text-gray-900">{activeFilters.length}</span>
           </p>
-
           <button
             type="button"
             onClick={resetFilters}
-            className="rounded-xl border border-gray-200 px-3 py-2 font-medium text-gray-700 text-sm transition hover:bg-gray-50"
+            className="cursor-pointer rounded-xl border border-gray-200 px-3 py-2 font-medium text-gray-700 text-sm transition hover:bg-gray-50"
           >
             Reset all
           </button>
