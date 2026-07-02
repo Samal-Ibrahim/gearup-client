@@ -1,4 +1,5 @@
 import { GET_CARS_API } from "../../config/constants"
+
 export type Car = {
   id: string
   make: string
@@ -15,16 +16,17 @@ export type Car = {
   updatedAt: string
 }
 
-type ApiResponse<T> = { success: boolean; data: T }
+type ApiResponse<T> = { sucsess: boolean; data: T }
 
 const cars = async (type?: string, deal?: string) => {
   const params = new URLSearchParams()
+
   if (type) params.set("type", type)
   if (deal) params.set("deal", deal)
+
   const qs = params.toString()
   const url = qs ? `${GET_CARS_API}?${qs}` : GET_CARS_API
 
-  console.log("params:", deal, type)
   const res = await fetch(url, { method: "GET" })
   if (!res.ok) {
     throw new Error("failed to fetch cars")
