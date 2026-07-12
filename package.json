@@ -10,7 +10,8 @@
     "lint:fix": "biome lint --write --unsafe .",
     "check": "biome check .",
     "format": "biome format --write . && biome lint --write --unsafe .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "experiment": "node experiment.js"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.100.14",
