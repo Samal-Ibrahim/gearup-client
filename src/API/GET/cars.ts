@@ -12,17 +12,20 @@ export type Car = {
   status: "AVAILABLE" | "SOLD" | "LEASED"
   deal: "BUY" | "LEASE" | "BOTH"
   type: "GASOLINE" | "ELECTRIC" | "HYBRID" | "DIESEL"
+  availability: "PRE_ORDER" | "IN_STOCK"
   createdAt: string
   updatedAt: string
 }
 
 type ApiResponse<T> = { sucsess: boolean; data: T }
 
-const cars = async (type?: string, deal?: string) => {
+const cars = async (type?: string, deal?: string, availability?: string) => {
   const params = new URLSearchParams()
 
   if (type) params.set("type", type)
   if (deal) params.set("deal", deal)
+  if (availability) params.set("availability", availability)
+  console.log("this: ", availability, type, deal)
 
   const qs = params.toString()
   const url = qs ? `${GET_CARS_API}?${qs}` : GET_CARS_API

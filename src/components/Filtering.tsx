@@ -4,11 +4,11 @@ type FiltersState = {
   query: string
   type: string
   deal: string
+  availability: string
   minPrice: string
   maxPrice: string
   minYear: string
   maxYear: string
-  inStock: string
   sortBy: string
 }
 
@@ -16,11 +16,11 @@ const initialFilters: FiltersState = {
   query: "",
   type: "",
   deal: "",
+  availability: "",
   minPrice: "",
   maxPrice: "",
   minYear: "",
   maxYear: "",
-  inStock: "",
   sortBy: "monthly_asc",
 }
 
@@ -30,6 +30,8 @@ type FilteringProps = {
 
 const inputClassName =
   "w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-0 transition focus:border-brand-200 focus:bg-[#ecfafc]"
+
+const autoApplyFields = new Set(["type", "deal", "availability"])
 
 const Filtering = ({ onApply }: FilteringProps) => {
   const [filters, setFilters] = useState<FiltersState>(initialFilters)
@@ -43,15 +45,13 @@ const Filtering = ({ onApply }: FilteringProps) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target
-    setFilters((prev) => {
-      const nextFilters = { ...prev, [name]: value }
+    const nextFilters = { ...filters, [name]: value }
 
-      if (name === "type" || name === "deal") {
-        onApply?.(nextFilters)
-      }
+    setFilters(nextFilters)
 
-      return nextFilters
-    })
+    if (autoApplyFields.has(name)) {
+      onApply?.(nextFilters)
+    }
   }
 
   const resetFilters = () => {
@@ -124,19 +124,19 @@ const Filtering = ({ onApply }: FilteringProps) => {
           </div>
 
           <div className="space-y-1">
-            <label htmlFor="inStock" className="font-medium text-gray-700 text-sm">
+            <label htmlFor="availability" className="font-medium text-gray-700 text-sm">
               Availability
             </label>
             <select
-              name="inStock"
-              id="inStock"
-              value={filters.inStock}
+              name="availability"
+              id="availability"
+              value={filters.availability}
               onChange={handleChange}
               className={inputClassName}
             >
               <option value="">All</option>
-              <option value="true">In Stock</option>
-              <option value="false">Pre-order</option>
+              <option value="IN_STOCK">In Stock</option>
+              <option value="PRE_ORDER">Pre-order</option>
             </select>
           </div>
 

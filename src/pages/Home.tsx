@@ -15,7 +15,7 @@ const formatPrice = (price: number) =>
 const formatMileage = (mileage: number) => new Intl.NumberFormat("en-US").format(mileage)
 
 const Home = () => {
-  const [filters, setFilters] = useState({ type: "", deal: "" })
+  const [filters, setFilters] = useState({ type: "", deal: "", availability: "" })
 
   const {
     data = [],
@@ -24,8 +24,8 @@ const Home = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["cars", filters.type, filters.deal],
-    queryFn: () => cars(filters.type, filters.deal),
+    queryKey: ["cars", filters.type, filters.deal, filters.availability],
+    queryFn: () => cars(filters.type, filters.deal, filters.availability),
   })
 
   if (isError) return <p>Error: {error.message}</p>
@@ -61,7 +61,7 @@ const Home = () => {
       <section className="container mx-auto flex justify-center">
         <Filtering
           onApply={(next) => {
-            setFilters({ type: next.type, deal: next.deal })
+            setFilters({ type: next.type, deal: next.deal, availability: next.availability })
           }}
         />
       </section>
@@ -88,7 +88,7 @@ const Home = () => {
                           {car.deal}
                         </span>
                         <span className="rounded-full bg-white/90 px-2.5 py-1 font-semibold text-gray-800 text-xs uppercase">
-                          {car.status}
+                          {car.availability}
                         </span>
                       </div>
                     </div>
