@@ -4,6 +4,7 @@ import Login from "../pages/auth/Login"
 import Register from "../pages/auth/Register"
 import Contact from "../pages/Contact"
 import Home from "../pages/Home"
+import Profile from "../pages/Profile"
 import ViewCarPage from "../pages/viewCar/ViewCarPage"
 
 const AppRoutes = () => {
@@ -15,6 +16,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/car/:id" element={<ViewCarPage />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   )
 }

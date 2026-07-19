@@ -3,15 +3,14 @@ import Header from "./components/Header"
 import AppRoutes from "./routes/Index"
 
 function App() {
-  // call it on form submit:
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main>
+      <main className="flex-1">
         <AppRoutes />
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 export default App

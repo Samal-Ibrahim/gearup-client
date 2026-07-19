@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import { Link } from "react-router"
-import { register } from "../../API/AUTH/register"
+import { register } from "../../features/auth/api"
 
 type RegisterPayload = {
   token?: string

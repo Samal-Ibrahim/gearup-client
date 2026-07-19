@@ -10,6 +10,7 @@ const navItemClasses = ({ isActive }: { isActive: boolean }) =>
   ].join(" ")
 
 const Header = () => {
+  const isLoggedIn = Boolean(localStorage.getItem("token"))
   return (
     <header className="sticky top-0 z-50 border-slate-200/60 border-b bg-slate-100/80 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
@@ -24,9 +25,16 @@ const Header = () => {
           <NavLink to="/about" className={navItemClasses}>
             About
           </NavLink>
-          <NavLink to="/login" className={navItemClasses}>
-            Login
-          </NavLink>
+          {!isLoggedIn && (
+            <NavLink to="/login" className={navItemClasses}>
+              Login
+            </NavLink>
+          )}
+          {isLoggedIn && (
+            <NavLink to="/profile" className={navItemClasses}>
+              Profile
+            </NavLink>
+          )}
           <NavLink to="/contact" className={navItemClasses}>
             Contact
           </NavLink>
