@@ -1,23 +1,12 @@
-import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import { Link } from "react-router"
-import { login } from "../../features/auth/api"
+import { useLogin } from "../../features/auth/hooks";
 
-type LoginPayload = {
-  token: string
-}
 
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
-  const { mutate, isPending, isError, error } = useMutation({
-    mutationFn: ({ email, password }: { email: string; password: string }) =>
-      login(email, password),
-    onSuccess: (data: LoginPayload) => {
-      localStorage.setItem("token", data.token)
-    },
-  })
+  const { mutate, isPending, isError, error } = useLogin()
 
   return (
     <section className="container-page py-12">

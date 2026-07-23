@@ -13,7 +13,7 @@ export const getCarById = async (ID: string) => {
   return json.data
 }
 
-export const cars = async (type?: string, deal?: string, availability?: string) => {
+export const getCars = async (type?: string, deal?: string, availability?: string) => {
   const params = new URLSearchParams()
 
   if (type) params.set("type", type)

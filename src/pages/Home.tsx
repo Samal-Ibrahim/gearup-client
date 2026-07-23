@@ -1,10 +1,9 @@
-import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 import { Link } from "react-router"
 import heroImg from "../assets/pexels-silverkblack-36729874.jpg"
 import ErrorHandlers from "../components/ErrorHandlers"
 import Filtering from "../components/Filtering"
-import { cars } from "../features/cars/api"
+import { useCars } from "../features/cars/hooks"
 import { getCarCountryMeta } from "../utils/carCountry"
 
 const formatPrice = (price: number) =>
@@ -21,16 +20,8 @@ const getFirstImage = (images?: string[]) =>
 const Home = () => {
   const [filters, setFilters] = useState({ type: "", deal: "", availability: "" })
 
-  const {
-    data = [],
-    isLoading,
-    isFetching,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["cars", filters.type, filters.deal, filters.availability],
-    queryFn: () => cars(filters.type, filters.deal, filters.availability),
-  })
+  const { data = [], isLoading, isError, error, isFetching} = useCars(filters)
+
   const hasActiveFilters = Boolean(filters.type || filters.deal || filters.availability)
 
   return (

@@ -4,21 +4,27 @@ import "./index.css"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { BrowserRouter } from "react-router-dom"
 import App from "./App.tsx"
+import { IsAuthProvider } from "./context/IsAuthContext.tsx";
 
 const queryClient = new QueryClient()
 
 const rootElement = document.getElementById("root")
+
+
 
 if (!rootElement) {
   throw new Error("Root element not found")
 }
 
 createRoot(rootElement).render(
+
   <StrictMode>
+    <IsAuthProvider>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
     </BrowserRouter>
+    </IsAuthProvider>
   </StrictMode>,
 )

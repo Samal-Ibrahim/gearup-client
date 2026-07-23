@@ -1,6 +1,6 @@
 import { GET_PROFILE } from "../../config/constants"
-import type {ApiResponse} from "../../types/api"
-
+import type { ApiResponse } from "../../types/api"
+import { getToken } from "../auth/token";
 
 type Profile = {
   name: string
@@ -10,9 +10,9 @@ type Profile = {
   updatedAt: string
 }
 
-const token = localStorage.getItem("token")
 
 export const profile = async () => {
+  const token = getToken()
   const res = await fetch(`${GET_PROFILE}`, {
     method: "GET",
     headers: {
@@ -25,7 +25,5 @@ export const profile = async () => {
     throw new Error("failed to fetch profile")
   }
   const json: ApiResponse<Profile> = await res.json()
-  console.log(json.data)
-
   return json.data
 }

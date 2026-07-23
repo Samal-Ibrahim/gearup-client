@@ -1,7 +1,6 @@
 import { LOGIN_API } from "../../config/constants"
 import type { RegisterRequest } from "../../types/api"
 
-
 export const login = async (email: string, password: string) => {
   const res = await fetch(LOGIN_API, {
     method: "POST",

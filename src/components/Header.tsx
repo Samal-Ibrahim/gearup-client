@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom"
+import { useAuth } from "../context/IsAuthContext"
+import { clearToken } from "../features/auth/token"
 
 const navItemClasses = ({ isActive }: { isActive: boolean }) =>
   [
@@ -10,7 +12,8 @@ const navItemClasses = ({ isActive }: { isActive: boolean }) =>
   ].join(" ")
 
 const Header = () => {
-  const isLoggedIn = Boolean(localStorage.getItem("token"))
+  const { isAuth, logout } = useAuth()
+
   return (
     <header className="sticky top-0 z-50 border-slate-200/60 border-b bg-slate-100/80 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
@@ -22,19 +25,32 @@ const Header = () => {
           <NavLink to="/" className={navItemClasses}>
             Home
           </NavLink>
-          <NavLink to="/about" className={navItemClasses}>
-            About
-          </NavLink>
-          {!isLoggedIn && (
+
+          {!isAuth && (
             <NavLink to="/login" className={navItemClasses}>
               Login
             </NavLink>
           )}
-          {isLoggedIn && (
-            <NavLink to="/profile" className={navItemClasses}>
-              Profile
-            </NavLink>
+          {isAuth && (
+            <>
+              <NavLink to="/profile" className={navItemClasses}>
+                Profile
+              </NavLink>
+              <NavLink
+                to="/login"
+                className={navItemClasses}
+                onClick={() => {
+                  logout()
+                  clearToken()
+                }}
+              >
+                Logout
+              </NavLink>
+            </>
           )}
+          <NavLink to="/about" className={navItemClasses}>
+            About
+          </NavLink>
           <NavLink to="/contact" className={navItemClasses}>
             Contact
           </NavLink>

@@ -1,13 +1,18 @@
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
+import { useAuth } from "../../context/IsAuthContext"
 import { register } from "../../features/auth/api"
+import { setToken } from "../../features/auth/token"
 
 type RegisterPayload = {
   token?: string
 }
 
 const Register = () => {
+  const navigate = useNavigate()
+  const { authorize } = useAuth()
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -19,7 +24,9 @@ const Register = () => {
       register({ name, email, password }),
     onSuccess: (data: RegisterPayload) => {
       if (data.token) {
-        localStorage.setItem("token", data.token)
+        setToken(data.token)
+        authorize()
+        navigate("/profile")
       }
     },
   })
