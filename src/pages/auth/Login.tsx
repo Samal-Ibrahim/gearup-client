@@ -4,8 +4,8 @@ import { useLogin } from "../../features/auth/hooks";
 
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("samal@gearup.com")
+  const [password, setPassword] = useState("Samal123")
   const { mutate, isPending, isError, error } = useLogin()
 
   return (
@@ -33,6 +33,7 @@ const Login = () => {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
+              
               placeholder="you@example.com"
               className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30"
             />

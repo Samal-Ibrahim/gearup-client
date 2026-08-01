@@ -1,6 +1,6 @@
 import { skipToken, useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import ErrorHandlers from "../../components/ErrorHandlers"
 import { getCarById } from "../../features/cars/api"
 import { getCarCountryMeta } from "../../utils/carCountry"
@@ -169,18 +169,37 @@ const CarDetailsPage = () => {
           <div className="space-y-3 rounded-3xl border border-gray-200 bg-gray-50 p-5">
             <h2 className="font-bold text-gray-900 text-lg">Next step</h2>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
+              {isLoggedIn ? (
+                <>
+                  <button
+                    type="button"
                 className="rounded-full bg-gray-900 px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-gray-800"
-              >
-                {isLoggedIn ? "Order this car" : "Sign in to order"}
-              </button>
-              <button
-                type="button"
-                className="rounded-full border border-gray-300 px-5 py-3 font-semibold text-gray-900 transition hover:-translate-y-0.5 hover:border-gray-400 hover:bg-gray-100"
-              >
-                {isLoggedIn ? "Lease this car" : "Sign in to lease"}
-              </button>
+                  >
+                    Lease this car
+                  </button>
+                  <button
+                    type="button"
+                  className="rounded-full border border-gray-300 px-5 py-3 font-semibold text-gray-900 transition hover:-translate-y-0.5 hover:border-gray-400 hover:bg-gray-100"
+                  >
+                    Order this car
+                  </button>
+                </>
+              ) : (
+<>
+                <Link
+                  to="/login"
+                className="rounded-full bg-gray-900 px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-gray-800"
+                >
+                  Sign in to lease
+                </Link>
+                <Link
+                  to="/login"
+                  className="rounded-full border border-gray-300 px-5 py-3 font-semibold text-gray-900 transition hover:-translate-y-0.5 hover:border-gray-400 hover:bg-gray-100"
+                >
+                  Sign in to order
+                </Link>
+                </>
+              )}
             </div>
           </div>
         </article>
