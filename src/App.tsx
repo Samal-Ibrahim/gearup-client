@@ -5,9 +5,9 @@ import AppRoutes from "./routes/Index"
 function App() {
   return (
     <div className="flex min-h-screen flex-col">
-      <div className="flex w-full items-center bg-green-50 p-6 shadow-md">
+      {/* <div className="flex w-full items-center bg-green-50 p-1 shadow-md">
         <h3 className="mx-auto">Work in progress... 🙏👇</h3>
-      </div>
+      </div> */}
       <Header />
       <main className="flex-1">
         <AppRoutes />

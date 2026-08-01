@@ -143,7 +143,7 @@ const Register = () => {
           <button
             type="submit"
             disabled={isPending}
-            className="btn-primary w-full px-4 py-2.5 font-semibold text-sm disabled:cursor-not-allowed disabled:opacity-70"
+            className="btn-primary w-full cursor-pointer px-4 py-2.5 font-semibold text-sm disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isPending ? "Creating account..." : "Create account"}
           </button>

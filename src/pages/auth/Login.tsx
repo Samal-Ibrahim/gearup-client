@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router"
-import { useLogin } from "../../features/auth/hooks";
-
+import { useLogin } from "../../features/auth/hooks"
 
 const Login = () => {
   const [email, setEmail] = useState("samal@gearup.com")
@@ -33,7 +32,6 @@ const Login = () => {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              
               placeholder="you@example.com"
               className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30"
             />
@@ -65,7 +63,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={isPending}
-            className="btn-primary w-full px-4 py-2.5 font-semibold text-sm disabled:cursor-not-allowed disabled:opacity-70"
+            className="btn-primary w-full cursor-pointer px-4 py-2.5 font-semibold text-sm disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isPending ? "Signing in..." : "Sign in"}
           </button>
